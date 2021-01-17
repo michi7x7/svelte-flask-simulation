@@ -3,7 +3,7 @@ import random
 import threading
 import atexit
 
-
+idx = 0
 load_avg = []
 timer = threading.Thread()
 
@@ -17,12 +17,14 @@ def create_app():
     def get_load():
         import psutil
         global load_avg
+        global idx
         
-        print(load_avg)
+        # print(load_avg)
         load_avg.append(psutil.cpu_percent())
 
         if len(load_avg) > 100:
             load_avg.pop(0)
+            idx += 1
 
         start()
 
@@ -55,7 +57,7 @@ def hello():
 @app.route("/get_load")
 def get_load():
     import json
-    return json.dumps({'time': list(range(len(load_avg))), 'load': load_avg})
+    return json.dumps({'time': list(range(idx,idx+len(load_avg))), 'load': load_avg})
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',debug=True)

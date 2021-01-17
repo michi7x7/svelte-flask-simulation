@@ -7,7 +7,7 @@
   export let plotHeader = 'Server Load History';
   
   function doUpdate(response) {
-    Plotly.react('plotDiv', [{x: response.time, y: response.load, type: 'scatter'}]);
+    Plotly.react('plotDiv', [{x: response.time, y: response.load, type: 'scatter'}], {uirevision:'true'});
   }
 
   function updatePlot() {
