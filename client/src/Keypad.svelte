@@ -12,14 +12,22 @@
 	    let ret = {};
 	    array.forEach(x => {
 	        ret[x] = ret[x] + 1 || 1;
-        })
+        });
         return ret;
     }
 
 	const select = num => { value = [...value, num] };
 	const clear  = () => { value = [] };
 	const add_random = () => select(Math.floor(Math.random() * 10))
+
+	function handleKeydown(event) {
+		let numkey = parseInt(event.key)
+		if(!isNaN(numkey))
+			select(numkey);
+	}
 </script>
+
+<svelte:window on:keydown={handleKeydown} />
 
 <style>
 	.keypad {

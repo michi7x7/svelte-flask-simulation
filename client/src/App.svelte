@@ -21,7 +21,7 @@
   $: console.log(runs)
 
   $: x_idx = value.keys();
-  $: _ = plotlyLoaded(value);
+  $: _ = plotlyLoaded(value, counts);
 
   function plotlyLoaded() {
     if(typeof Plotly !== 'undefined') {
